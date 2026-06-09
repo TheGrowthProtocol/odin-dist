@@ -40,11 +40,15 @@
             <ui:VisualElement name="input-bar" class="eig-input-bar" style="width: 100%;">
                 <ui:VisualElement name="input-shell" class="input-shell"
                     style="flex-grow: 1; flex-shrink: 1; width: 100%; min-width: 0; flex-direction: column;">
-                    <ui:VisualElement name="mention-chips-bar" class="mention-chips-bar" />
-                    <ui:TextField name="chat-input" multiline="true"
-                        style="flex-grow: 1; flex-shrink: 1; width: 100%; min-width: 0;" />
+                    <ui:VisualElement name="chat-input-body" class="chat-input-body">
+                        <ui:VisualElement name="composer-input-inline" class="composer-input-inline">
+                            <ui:VisualElement name="mention-chips-bar" class="mention-chips-bar" />
+                            <ui:TextField name="chat-input" multiline="true"
+                                style="flex-grow: 1; flex-shrink: 1; min-width: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                     <ui:VisualElement name="composer-row" class="composer-row"
-                        style="flex-direction: row; justify-content: space-between; align-items: center; width: 100%;">
+                        style="flex-direction: row; justify-content: space-between; align-items: center; align-self: stretch;">
                         <ui:Button text="Agent &#x25BE;" name="mode-trigger"
                             class="composer-text-button mode-trigger" />
                         <ui:Button text="&#x2191;" name="send-button"

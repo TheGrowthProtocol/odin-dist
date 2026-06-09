@@ -390,21 +390,47 @@
     flex-direction: row;
     flex-grow: 0;
     flex-shrink: 0;
+    align-self: stretch;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     min-width: 0;
     min-height: 20px;
     padding-top: 0;
     padding-bottom: 2px;
     padding-left: 6px;
     padding-right: 6px;
+    width:100%;
 }
 
 .composer-row > .composer-text-button,
 .composer-row > .composer-icon-button {
     flex-grow: 0;
     flex-shrink: 0;
+}
+
+.chat-input-body {
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.composer-input-inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 100%;
+    min-width: 0;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #chat-input {
@@ -414,18 +440,19 @@
     border-radius: 0;
     color: #ececec;
     font-size: 13px;
-    padding-top: 6px;
+    padding-top: 2px;
     padding-bottom: 0;
-    padding-left: 8px;
-    padding-right: 10px;
+    padding-left: 0;
+    padding-right: 6px;
     margin-left: 0;
     margin-right: 0;
     overflow: hidden;
     min-width: 0;
-    width: 100%;
+    width: auto;
     flex-grow: 1;
     flex-shrink: 1;
-    min-height: 52px;
+    align-self: flex-start;
+    min-height: 40px;
 }
 
 #chat-input .unity-base-field__input,
@@ -1093,41 +1120,94 @@
     flex-direction: row;
     flex-wrap: wrap;
     flex-shrink: 0;
-    width: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 0;
-    padding-right: 0;
-    background-color: #1c1c1c;
-    border-top-width: 1px;
-    border-top-color: #2a2a2a;
+    flex-grow: 0;
+    width: auto;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 6px 2px 0;
+    background-color: transparent;
+    border-top-width: 0;
 }
 
 .mention-chip {
     flex-direction: row;
     align-items: center;
-    background-color: rgba(77, 153, 230, 0.15);
-    border-radius: 12px;
-    padding: 2px 6px 2px 8px;
-    margin: 2px 4px 2px 0;
+    flex-shrink: 0;
+    height: 18px;
+    min-height: 18px;
+    background-color: rgba(77, 153, 230, 0.18);
+    border-width: 0;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 4px;
+    margin: 4px 4px 2px 4px;
+    overflow: hidden;
+}
+
+.mention-chip-icon {
+    min-width: 16px;
+    width: 16px;
+    height: 14px;
+    margin-right: 4px;
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 0;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    font-size: 8px;
+    -unity-font-style: bold;
+    color: #d8e8ff;
+    background-color: rgba(77, 136, 221, 0.55);
+    -unity-text-align: middle-center;
+}
+
+.mention-chip-icon--script {
+    color: #ffffff;
+    background-color: rgba(77, 136, 221, 0.9);
 }
 
 .mention-chip-label {
     font-size: 11px;
-    color: rgba(128, 191, 255, 1);
-    margin-right: 2px;
+    color: rgba(168, 208, 255, 1);
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 1px;
+    padding: 0;
+    border-width: 0;
+    background-color: transparent;
+    -unity-font-style: normal;
+    white-space: nowrap;
 }
 
 .mention-chip-remove {
-    width: 14px;
-    height: 14px;
-    font-size: 10px;
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    min-height: 12px;
+    font-size: 8px;
     color: rgba(128, 191, 255, 0.7);
     background-color: transparent;
     border-width: 0;
-    border-radius: 7px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     padding: 0;
+    margin-left: 1px;
+    margin-right: 0;
+    opacity: 0;
     -unity-text-align: middle-center;
+}
+
+.mention-chip:hover .mention-chip-remove {
+    opacity: 1;
 }
 
 .mention-chip-remove:hover {
@@ -1142,6 +1222,11 @@
     background-color: rgba(77, 204, 153, 0.15);
 }
 
+.mention-chip--gameobject .mention-chip-icon {
+    color: #e8fff4;
+    background-color: rgba(77, 204, 153, 0.75);
+}
+
 .mention-chip--gameobject .mention-chip-label {
     color: rgba(128, 230, 179, 1);
 }
@@ -1153,6 +1238,11 @@
 /* Selection chips - orange tint */
 .mention-chip--selection {
     background-color: rgba(230, 170, 77, 0.15);
+}
+
+.mention-chip--selection .mention-chip-icon {
+    color: #fff4e8;
+    background-color: rgba(230, 170, 77, 0.75);
 }
 
 .mention-chip--selection .mention-chip-label {
@@ -1332,48 +1422,89 @@
 /* ─── Phase 36: Code Diff Review Card ─── */
 
 .diff-card {
-    margin: 8px 12px;
+    margin: 6px 10px;
     padding: 0;
     background-color: rgba(30, 32, 34, 1);
-    border-radius: 6px;
-    border-left-width: 3px;
-    border-left-color: rgba(80, 140, 220, 1);
+    border-radius: 5px;
+    border-left-width: 2px;
+    border-left-color: rgba(80, 140, 220, 0.65);
     overflow: hidden;
+    transition-property: border-left-color, opacity;
+    transition-duration: 0.15s;
+}
+
+.diff-card:hover {
+    border-left-color: rgba(100, 165, 240, 1);
 }
 
 .diff-card-resolved {
     opacity: 0.7;
 }
 
+.diff-card-resolved:hover {
+    border-left-color: rgba(80, 140, 220, 0.65);
+}
+
 .diff-card-header {
     flex-direction: row;
     align-items: center;
-    padding: 6px 10px;
+    padding: 4px 10px;
     background-color: rgba(40, 44, 50, 1);
     border-bottom-width: 1px;
     border-bottom-color: rgba(60, 64, 70, 1);
 }
 
 .diff-card-header-label {
-    font-size: 11px;
+    font-size: 10px;
     -unity-font-style: bold;
-    color: rgba(120, 170, 240, 1);
+    letter-spacing: 0.3px;
+    color: rgba(170, 195, 235, 1);
+}
+
+.diff-card-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    margin-right: 6px;
+}
+
+.diff-card-status-dot--edit {
+    background-color: rgba(120, 170, 240, 1);
+}
+
+.diff-card-status-dot--new {
+    background-color: rgba(130, 220, 150, 1);
 }
 
 .diff-card-file-row {
     flex-direction: row;
     align-items: center;
-    padding: 4px 10px;
+    padding: 3px 10px;
     background-color: rgba(35, 38, 42, 1);
     border-bottom-width: 1px;
     border-bottom-color: rgba(50, 54, 60, 1);
 }
 
+.diff-card-file-icon {
+    font-size: 8px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    color: rgba(160, 190, 230, 1);
+    background-color: rgba(80, 110, 150, 0.35);
+    border-radius: 3px;
+    min-width: 24px;
+    padding: 1px 4px;
+    margin-right: 6px;
+}
+
 .diff-card-filename {
     font-size: 11px;
     -unity-font-style: bold;
-    color: rgba(200, 200, 200, 1);
+    color: rgba(210, 213, 218, 1);
     flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .diff-card-badge-new {
@@ -1381,25 +1512,25 @@
     -unity-font-style: bold;
     color: rgba(120, 200, 120, 1);
     background-color: rgba(40, 70, 40, 1);
-    padding: 1px 6px;
-    border-radius: 4px;
+    padding: 1px 5px;
+    border-radius: 3px;
     margin-left: 6px;
 }
 
 .diff-card-stats-added {
     font-size: 10px;
     color: rgba(120, 200, 120, 1);
-    margin-left: 8px;
+    margin-left: 6px;
 }
 
 .diff-card-stats-removed {
     font-size: 10px;
     color: rgba(220, 100, 100, 1);
-    margin-left: 4px;
+    margin-left: 3px;
 }
 
 .diff-card-content {
-    max-height: 300px;
+    max-height: 260px;
     padding: 0;
 }
 
@@ -1411,27 +1542,54 @@
     -unity-font-style: italic;
 }
 
+.diff-card-empty-label {
+    font-size: 10px;
+    color: rgba(140, 144, 150, 1);
+    padding: 10px;
+    -unity-font-style: italic;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
 .diff-line {
     flex-direction: row;
     padding: 0 10px;
-    min-height: 16px;
+    min-height: 15px;
+    transition-property: background-color;
+    transition-duration: 0.08s;
+}
+
+.diff-line:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.diff-line-add:hover {
+    background-color: rgba(36, 70, 36, 1);
+}
+
+.diff-line-remove:hover {
+    background-color: rgba(70, 36, 36, 1);
 }
 
 .diff-line-add {
     background-color: rgba(30, 60, 30, 1);
+    border-left-width: 2px;
+    border-left-color: rgba(110, 200, 120, 0.65);
 }
 
 .diff-line-remove {
     background-color: rgba(60, 30, 30, 1);
+    border-left-width: 2px;
+    border-left-color: rgba(220, 110, 110, 0.65);
 }
 
 .diff-line-number {
-    width: 32px;
-    min-width: 32px;
-    font-size: 10px;
+    width: 28px;
+    min-width: 28px;
+    font-size: 9px;
     color: rgba(100, 100, 100, 1);
     -unity-text-align: middle-right;
-    padding-right: 4px;
+    padding-right: 3px;
 }
 
 .diff-line-text {
@@ -1445,62 +1603,90 @@
 
 .diff-card-actions {
     flex-direction: row;
-    padding: 6px 10px;
+    align-items: center;
+    padding: 5px 10px;
     background-color: rgba(35, 38, 42, 1);
     border-top-width: 1px;
     border-top-color: rgba(50, 54, 60, 1);
 }
 
+.diff-card-actions-group {
+    flex-direction: row;
+    align-items: center;
+}
+
+.diff-card-actions-spacer {
+    flex-grow: 1;
+}
+
 .diff-action-accept {
     background-color: rgba(40, 80, 40, 1);
     color: rgba(150, 230, 150, 1);
-    border-radius: 4px;
-    padding: 4px 12px;
-    margin-right: 6px;
-    font-size: 11px;
+    border-radius: 3px;
+    padding: 3px 10px;
+    margin-right: 4px;
+    font-size: 10px;
     -unity-font-style: bold;
     border-width: 1px;
     border-color: rgba(60, 120, 60, 1);
+    transition-property: background-color, border-color, scale;
+    transition-duration: 0.1s;
 }
 
 .diff-action-accept:hover {
-    background-color: rgba(50, 100, 50, 1);
+    background-color: rgba(52, 110, 56, 1);
+    border-color: rgba(90, 170, 90, 1);
+}
+
+.diff-action-accept:active {
+    scale: 0.97 0.97;
 }
 
 .diff-action-reject {
     background-color: rgba(80, 35, 35, 1);
     color: rgba(230, 140, 140, 1);
-    border-radius: 4px;
-    padding: 4px 12px;
-    margin-right: 6px;
-    font-size: 11px;
+    border-radius: 3px;
+    padding: 3px 10px;
+    margin-right: 4px;
+    font-size: 10px;
     -unity-font-style: bold;
     border-width: 1px;
     border-color: rgba(120, 50, 50, 1);
+    transition-property: background-color, border-color, scale;
+    transition-duration: 0.1s;
 }
 
 .diff-action-reject:hover {
-    background-color: rgba(100, 40, 40, 1);
+    background-color: rgba(110, 46, 46, 1);
+    border-color: rgba(170, 80, 80, 1);
+}
+
+.diff-action-reject:active {
+    scale: 0.97 0.97;
 }
 
 .diff-action-secondary {
     background-color: rgba(50, 52, 58, 1);
     color: rgba(170, 170, 170, 1);
-    border-radius: 4px;
-    padding: 4px 10px;
-    margin-right: 4px;
-    font-size: 10px;
+    border-radius: 3px;
+    padding: 3px 8px;
+    margin-left: 3px;
+    font-size: 9px;
     border-width: 1px;
     border-color: rgba(70, 72, 78, 1);
+    transition-property: background-color, border-color;
+    transition-duration: 0.1s;
 }
 
 .diff-action-secondary:hover {
-    background-color: rgba(60, 64, 70, 1);
+    background-color: rgba(64, 68, 76, 1);
+    border-color: rgba(95, 100, 110, 1);
+    color: rgba(220, 220, 220, 1);
 }
 
 .diff-resolved-label {
-    font-size: 11px;
-    padding: 6px 10px;
+    font-size: 10px;
+    padding: 5px 10px;
     -unity-font-style: italic;
 }
 
